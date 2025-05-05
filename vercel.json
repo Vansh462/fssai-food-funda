@@ -6,8 +6,8 @@
   "framework": "nextjs",
   "outputDirectory": ".next",
   "env": {
-    "GEMINI_API_KEY": "@gemini-api-key",
-    "NEXT_PUBLIC_SUPABASE_URL": "@next-public-supabase-url",
-    "SUPABASE_SERVICE_ROLE_KEY": "@supabase-service-role-key"
+    "GEMINI_API_KEY": "",
+    "NEXT_PUBLIC_SUPABASE_URL": "",
+    "SUPABASE_SERVICE_ROLE_KEY": ""
   }
 }

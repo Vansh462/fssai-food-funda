@@ -1,13 +1,13 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { initializeRAG } from "@/lib/langchain/initialize";
 
 export const runtime = "nodejs";
 
-export async function GET(req: NextRequest) {
+export async function GET() {
   try {
     // Initialize RAG system
     await initializeRAG();
-    
+
     return NextResponse.json({ success: true, message: "RAG system initialized successfully" });
   } catch (error) {
     console.error("Error initializing RAG system:", error);

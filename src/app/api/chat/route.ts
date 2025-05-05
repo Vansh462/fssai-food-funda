@@ -10,7 +10,7 @@ export async function POST(req: NextRequest) {
 
     // Get the last user message
     const lastUserMessage = messages
-      .filter((msg: any) => msg.role === "user")
+      .filter((msg: { role: string; content: string }) => msg.role === "user")
       .pop();
 
     if (!lastUserMessage) {
@@ -23,11 +23,15 @@ export async function POST(req: NextRequest) {
     try {
       // Try to initialize RAG system
       console.log("Getting RAG system for chat");
-      const { chatModel } = await getRAGSystem();
+      const ragSystem = await getRAGSystem();
+
+      if (!ragSystem) {
+        throw new Error("RAG system initialization failed");
+      }
 
       // Generate response using the RAG model
       console.log("Generating response with chat model");
-      const response = await chatModel.invoke({
+      const response = await ragSystem.chatModel.invoke({
         question: lastUserMessage.content,
       });
 

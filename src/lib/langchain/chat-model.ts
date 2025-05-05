@@ -1,13 +1,14 @@
 import { MemoryVectorStore } from "langchain/vectorstores/memory";
+import { SupabaseVectorStore } from "@langchain/community/vectorstores/supabase";
 
 // Simple chat model that returns predefined responses
 class SimpleChatModel {
   // Flag to indicate if this is a RAG model
   private isRAG: boolean;
-  private vectorStore: MemoryVectorStore | null;
+  private vectorStore: MemoryVectorStore | SupabaseVectorStore | null;
   private temperature: number;
 
-  constructor(vectorStore: MemoryVectorStore | null = null, temperature: number = 0.7) {
+  constructor(vectorStore: MemoryVectorStore | SupabaseVectorStore | null = null, temperature: number = 0.7) {
     this.isRAG = !!vectorStore;
     this.vectorStore = vectorStore;
     this.temperature = temperature;
@@ -830,7 +831,7 @@ export function createFallbackChatModel(temperature: number = 0.9) {
 }
 
 // Create a chat model with RAG capabilities
-export function createChatModel(vectorStore: MemoryVectorStore, temperature: number = 0.9) {
+export function createChatModel(vectorStore: MemoryVectorStore | SupabaseVectorStore, temperature: number = 0.9) {
   console.log(`Creating RAG-enabled chat model with temperature ${temperature}`);
 
   try {

@@ -1,9 +1,21 @@
 import { loadDocuments } from "./document-loader";
 import { createVectorStore } from "./vector-store";
 import { createChatModel, createFallbackChatModel } from "./chat-model";
+import { MemoryVectorStore } from "langchain/vectorstores/memory";
+import { SupabaseVectorStore } from "@langchain/community/vectorstores/supabase";
+
+// Define a type for the chat model
+type ChatModelType = {
+  invoke: (params: { question: string }) => Promise<string>;
+  // Add other methods/properties your chat model has
+};
 
 // Singleton instance of the RAG system
-let ragSystem: { vectorStore: any; chatModel: any; isRAG: boolean } | null = null;
+let ragSystem: {
+  vectorStore: MemoryVectorStore | SupabaseVectorStore | null;
+  chatModel: ChatModelType;
+  isRAG: boolean
+} | null = null;
 
 // Initialize the RAG system
 export async function initializeRAG() {
@@ -116,3 +128,4 @@ export async function getRAGSystem() {
   // Initialize if not already initialized
   return await initializeRAG();
 }
+

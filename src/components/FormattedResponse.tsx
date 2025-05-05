@@ -1,8 +1,6 @@
 "use client";
 
 import React from "react";
-import { cn } from "@/lib/utils";
-import { Beaker, Book, FileText, Info, AlertTriangle, CheckCircle2 } from "lucide-react";
 
 interface FormattedResponseProps {
   content: string;
@@ -205,3 +203,4 @@ const ApparatusBlock: React.FC<{ content: string }> = ({ content }) => {
 
 
 export default FormattedResponse;
+

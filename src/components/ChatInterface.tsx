@@ -236,7 +236,7 @@ export default function ChatInterface() {
           </Button>
         </div>
         <div className="mt-2 text-xs text-gray-500 text-center">
-          Examples: "How to detect milk adulteration?", "What are common adulterants in spices?", "How to test for food coloring?"
+          Examples: &quot;How to detect milk adulteration?&quot;, &quot;What are common adulterants in spices?&quot;, &quot;How to test for food coloring?&quot;
         </div>
       </form>
     </div>
